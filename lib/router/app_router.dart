@@ -19,6 +19,7 @@ import '../features/presentation/bloc/profile/profile_bloc.dart';
 import '../features/presentation/bloc/profile/profile_event.dart';
 import '../features/presentation/bloc/quotes/quotes_bloc.dart';
 import '../features/presentation/bloc/quotes/quotes_event.dart';
+import '../features/presentation/collection_details/collection_detail_bloc.dart';
 import '../features/presentation/ui/collections_page.dart';
 import '../features/presentation/ui/favorites_page.dart';
 import '../features/presentation/ui/home_page.dart';
@@ -87,6 +88,7 @@ class AppRouter {
                   CollectionsRepositoryImpl(),
                 )..add(const CollectionsEvent.load()),
               ),
+
             ],
             child: child,
           );
@@ -105,7 +107,14 @@ class AppRouter {
 
           GoRoute(
             path: '/collections',
-            builder: (_, __) => const CollectionsPage(),
+            builder: (context, _) {
+              return BlocProvider<CollectionDetailBloc>(
+                create: (_) => CollectionDetailBloc(
+                  supabase,
+                ),
+                child: const CollectionsPage(),
+              );
+            },
           ),
 
           GoRoute(
