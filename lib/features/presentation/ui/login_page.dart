@@ -112,11 +112,11 @@ class LoginPage extends HookWidget {
 
               const SizedBox(height: 12),
               TextButton(
-                onPressed: () => context.go('/reset'),
+                onPressed: () => context.push('/reset'),
                 child: const Text(AppStrings.forgotPassword),
               ),
               TextButton(
-                onPressed: () => context.go('/signup'),
+                onPressed: () => context.push('/signup'),
                 child: const Text(AppStrings.createAccount),
               ),
             ],
